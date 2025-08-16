@@ -6,13 +6,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class MasterItem extends Model
+class Kategori extends Model
 {
     use HasFactory;
     use SoftDeletes;
 
-    public function kategoris()
+    public function master_items()
     {
-        return $this->belongsToMany(Kategori::class, 'item_kategori', 'master_item_id', 'kategori_id');
+        return $this->belongsToMany(MasterItem::class, 'item_kategori', 'kategori_id', 'master_item_id');
     }
 }
