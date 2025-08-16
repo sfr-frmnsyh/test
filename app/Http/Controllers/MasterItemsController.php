@@ -75,6 +75,10 @@ class MasterItemsController extends Controller
         }
 
         if ($request->hasFile('foto')) {
+            if (!empty($data_item->foto) && Storage::exists($data_item->foto)) {
+                Storage::delete($data_item->foto);
+            }
+
             $path = 'uploads/items/';
             $filename = $path . time() . '_' . $request->file('foto')->getClientOriginalName();
             Storage::put($filename, File::get($request->foto), 'public');
